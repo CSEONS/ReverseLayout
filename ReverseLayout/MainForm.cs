@@ -48,9 +48,15 @@ namespace ReverseLayout
                 Thread.Sleep(100); // Даем время для копирования
 
                 if (Clipboard.ContainsText())
-                {
+                {//Ghbdtn
                     string text = Clipboard.GetText();
                     string converted = LayoutConverter.Convert(text);
+
+                    if (string.IsNullOrEmpty(converted))
+                    {
+                        return;
+                    }
+
                     Clipboard.SetText(converted);
                     SendCtrlV();
                 }
@@ -66,12 +72,12 @@ namespace ReverseLayout
 
         private void SendCtrlC()
         {
-            SendKeys.SendWait("^(c)");
+            SendKeys.SendWait("^c");
         }
 
         private void SendCtrlV()
         {
-            SendKeys.SendWait("^(v)");
+            SendKeys.SendWait("^v");
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
